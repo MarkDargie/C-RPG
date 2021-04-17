@@ -1,4 +1,5 @@
-﻿using System;
+﻿using C_RPG.StatusEffects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace C_RPG.Mobs.Enemies
 {
-    abstract class Enemy
+    abstract class Enemy:Entity
     {
 
         public string type;
-        public int Health;
         public int Value;
         public int level;
         public int baseDamage;
@@ -24,6 +24,10 @@ namespace C_RPG.Mobs.Enemies
             int damageValue = rawDamageValue - Armour;
             Health -= damageValue;
         }
+
+        public int Health { get; set; }
+        public List<StatusEffect> statusEffects { get; set; }
+        public int AbilityPointPool { get; set; }
 
         public virtual int Attack()
         {

@@ -15,6 +15,7 @@ namespace C_RPG.Mobs.Enemies
             Health = 75;
             Value = 2;
             level = 1;
+            AbilityPointPool = 50;
             baseDamage = 2;
         }
 
