@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using C_RPG.Players;
+using C_RPG.Mobs.Player;
+using C_RPG.Mobs.Player.Classes;
 
 namespace C_RPG
 {

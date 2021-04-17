@@ -16,6 +16,7 @@ namespace C_RPG.Mobs.Enemies
             Value = 2;
             level = 1;
             damage = 2;
+            AbilityPointPool = 50;
         }
 
         public override string ToString()

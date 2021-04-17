@@ -15,6 +15,7 @@ namespace C_RPG.Mobs.Enemies
             Value = 2;
             level = 1;
             damage = 15;
+            AbilityPointPool = 50;
         }
 
         public new int Attack()
