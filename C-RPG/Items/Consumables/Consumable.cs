@@ -8,17 +8,17 @@ using C_RPG.StatusEffects;
 
 namespace C_RPG.Items.Consumables
 {
-    interface Consumable
+    interface Consumable:Item
     {
         string name { get; set; }
-        float hpRestored { get; set; }
-        float abilityPoolPoints { get; set; }
+        int hpRestored { get; set; }
+        int abilityPoolPoints { get; set; }
         bool overtime { get; set; }
-        bool usable { get; set; }
+        bool Usable { get; set; }
         int overtimeTurns { get; set; }
         StatusEffect ConsumableEffect { get; set; }
 
-        void Consume(Entity entity);
+        void Use(Entity entity);
 
     }
 }

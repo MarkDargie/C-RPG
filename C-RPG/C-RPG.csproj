@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Items\Consumables\Consumable.cs" />
-    <Compile Include="Items\Consumables\Food.cs" />
+    <Compile Include="Items\Consumables\Food\ChickenWing.cs" />
+    <Compile Include="Items\Consumables\Food\Food.cs" />
+    <Compile Include="Items\Item.cs" />
     <Compile Include="Mobs\Enemies\Enemy.cs" />
     <Compile Include="Mobs\Enemies\Skeleton.cs" />
     <Compile Include="Mobs\Enemies\Zombie.cs" />
@@ -63,6 +65,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Items\Consumables\Potions\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

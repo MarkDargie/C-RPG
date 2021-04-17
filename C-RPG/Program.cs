@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using C_RPG.Mobs.Player;
 using C_RPG.Mobs.Enemies;
+using C_RPG.Items.Consumables.Food;
 
 namespace C_RPG
 {
@@ -18,11 +19,11 @@ namespace C_RPG
             Game.intro();
 
             Player player = Game.CreatePlayer();
+            player.inventory[0] = new ChickenWing();
 
             Game.ShowPlayer(player);
 
             player.TakeDamage(15);
-
             Enemy skeleton = new Skeleton();
 
             Console.WriteLine("Skeleton: " + skeleton.type);
@@ -37,6 +38,11 @@ namespace C_RPG
             player.TakeDamage(skeleton.Attack());
 
             Game.ShowPlayer(player);
+
+            player.inventory[0].Use(player);
+
+            Game.ShowPlayer(player);
+
 
             Console.ReadKey();
 
