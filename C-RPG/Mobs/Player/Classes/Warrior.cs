@@ -15,7 +15,13 @@ namespace C_RPG.Mobs.Player.Classes
             Health = 120;
             Armour = 10;
             AbilityPointPool = 50;
+            baseDamage = 10;
         }
+
+        //public override int StandardAttack()
+        //{
+        //    return base.StandardAttack();
+        //}
 
         public override void TakeDamage(int rawDamageValue)
         {

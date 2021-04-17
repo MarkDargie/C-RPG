@@ -29,12 +29,26 @@ namespace C_RPG.Mobs.Enemies
         public List<StatusEffect> statusEffects { get; set; }
         public int AbilityPointPool { get; set; }
 
-        public virtual int Attack()
+        public int Attack(int damageRoll)
         {
+
+            int attackDamage = RollDamage(baseDamage, 20);
+            Console.WriteLine(" Enemy Damage: " + attackDamage.ToString());
+            return attackDamage;
+
+            //Random random = new Random();
+            //int attackdamage = random.Next(baseDamage, 21);
+            //Console.WriteLine("enemy dmg: " + attackdamage);
+            //return attackdamage;
+        }
+
+        public int RollDamage(int min, int max)
+        {
+
             Random random = new Random();
-            int AttackDamage = random.Next(baseDamage, 21);
-            Console.WriteLine("Skeleton DMG: " + AttackDamage);
-            return AttackDamage;
+
+            return random.Next(min, max);
+
         }
 
         public override string ToString()

@@ -14,6 +14,9 @@ namespace C_RPG
         static void Main(string[] args)
         {
 
+            // Set Console Window Size
+            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+
             GameMaster Game = new GameMaster();
 
             Game.intro();
@@ -23,25 +26,12 @@ namespace C_RPG
 
             Game.ShowPlayer(player);
 
-            player.TakeDamage(15);
-            Enemy skeleton = new Skeleton();
+            Game.StartDungeonInstance(player);
 
-            Console.WriteLine("Skeleton: " + skeleton.type);
 
-            Instance instance = new Instance("Dungeon", 1);
+            //player.inventory[0].Use(player);
 
-            Console.WriteLine(instance.mobs.Length);
-
-            instance.ShowMobs();
-
-            Console.WriteLine("ATTACK EVENT: ");
-            player.TakeDamage(skeleton.Attack());
-
-            Game.ShowPlayer(player);
-
-            player.inventory[0].Use(player);
-
-            Game.ShowPlayer(player);
+            //Game.ShowPlayer(player);
 
 
             Console.ReadKey();

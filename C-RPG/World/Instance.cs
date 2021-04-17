@@ -14,12 +14,16 @@ namespace C_RPG
         public int numberofMobs;
         public Enemy[] mobs;
 
+        // Keep track of how many instances have been played
+        public static int InstanceCount;
+
         public Instance(string _name, int _level)
         {
             name = _name;
             level = _level;
             numberofMobs = level + 1;
             mobs = GetMobs(numberofMobs);
+            InstanceCount++;
         }
 
         /*
@@ -31,7 +35,7 @@ namespace C_RPG
 
             for(int i = 0; i < mobSize; i++)
             {
-                enemies[i] = new Skeleton();
+                enemies[i] = new Succubus();
             }
             return enemies;
 
@@ -42,10 +46,21 @@ namespace C_RPG
         */
         public void ShowMobs()
         {
-            foreach(Enemy mob in this.mobs)
+
+            int reward = 0;
+
+            for(int i = 0; i < mobs.Length; i++)
             {
-                Console.WriteLine("MOB: " + mob.ToString());
+
+                if (mobs[i].Health <= 0)
+                {
+                    reward += mobs[i].Value;
+                    mobs = mobs.Where(mob => mob.Health > 0).ToArray();
+                }
+
+                Console.WriteLine(mobs[i].ToString() + "\n");
             }
+
         }
         
     }

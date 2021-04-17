@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using C_RPG.Mobs.Player;
 using C_RPG.Mobs.Player.Classes;
+using C_RPG.Mobs.Enemies;
 
 namespace C_RPG
 {
@@ -38,10 +39,77 @@ namespace C_RPG
 
         }
 
+        public void GameOver()
+        {
+            Console.WriteLine("You Have Died: Play Again(1). Exit(2)");
+        }
 
         public void ShowPlayer(Player player)
         {
-            Console.WriteLine(player.ToString());
+            Console.WriteLine( '\n' + player.ToString());
+        }
+
+        //public void AttackAction(Enemy target)
+        //{
+
+        //}
+
+        /*
+         * Testing Dungeon Instance Functionality
+         * NOTE: This will be changed later
+         */
+        public void StartDungeonInstance(Player player)
+        {
+
+            var random = new Random();
+
+            Instance instance = CreateDungeonInstance(player.level);
+
+            while (instance.mobs.Length > 0)
+            {
+                instance.ShowMobs();
+
+                ShowPlayer(player);
+
+                Console.WriteLine(" \n ACTION: (1) Attack. (2) Use Item. (3) Flee.");
+                string action = Console.ReadLine();
+
+                if (action == "1")
+                {
+                    instance.mobs[0].TakeDamage(player.StandardAttack());
+                }
+                else
+                {
+                    Console.WriteLine("Action Invalid");
+                }
+
+                for (int i = 0; i < instance.mobs.Length; i++)
+                {
+
+                    int roll = random.Next(1, 11);
+                    EnemyAttack(instance.mobs[i], player, roll);
+
+                }
+            }    
+
+        }
+
+
+        public void EnemyAttack(Enemy enemy, Player player, int roll)
+        {
+
+            int damageRoll = roll + enemy.baseDamage;
+
+            player.TakeDamage(damageRoll);
+
+            Console.WriteLine("ENEMY ACTION: " + damageRoll.ToString());
+        }
+
+        public Instance CreateDungeonInstance(int playerLevel)
+        {
+
+            Instance instance = new Instance("Dungeon", playerLevel);
+            return instance;
         }
 
 

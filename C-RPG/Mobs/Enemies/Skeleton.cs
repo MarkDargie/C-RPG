@@ -19,15 +19,6 @@ namespace C_RPG.Mobs.Enemies
             AbilityPointPool = 50;
         }
 
-        public new int Attack()
-        {
-  
-            Random random = new Random();
-            int AttackDamage = random.Next(baseDamage, 21);
-            Console.WriteLine("Skeleton DMG: " + AttackDamage);
-            return AttackDamage;
-        }
-
         public override string ToString()
         {
 
