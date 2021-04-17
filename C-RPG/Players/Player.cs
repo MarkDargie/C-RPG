@@ -45,7 +45,8 @@ namespace C_RPG.Players
 
         public override void TakeDamage(int rawDamageValue)
         {
-            base.TakeDamage(rawDamageValue - Armour);
+            //int damageValue = rawDamageValue - Armour;
+            Health -= rawDamageValue;
 
         }
 

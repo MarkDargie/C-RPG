@@ -14,7 +14,12 @@ namespace C_RPG.Mobs.Enemies
             Health = 50;
             Value = 2;
             level = 1;
-            damage = 2;
+            damage = 15;
+        }
+
+        public new int Attack()
+        {
+            return damage;
         }
 
         public override string ToString()

@@ -11,7 +11,16 @@ namespace C_RPG.Mobs.Enemies
 
         public Zombie()
         {
+            type = "Zombie";
+            Health = 75;
+            Value = 2;
+            level = 1;
+            damage = 2;
+        }
 
+        public override string ToString()
+        {
+            return base.ToString() + " bruuhhhhhh ";
         }
     }
 }

@@ -33,6 +33,11 @@ namespace C_RPG
 
             instance.ShowMobs();
 
+            Console.WriteLine("ATTACK EVENT: ");
+            player.TakeDamage(skeleton.Attack());
+
+            Game.ShowPlayer(player);
+
             Console.ReadKey();
 
         }
