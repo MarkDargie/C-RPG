@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Mobs\Enemies\Enemy.cs" />
     <Compile Include="Mobs\Enemies\Skeleton.cs" />
+    <Compile Include="Mobs\Enemies\Slime.cs" />
     <Compile Include="Mobs\Enemies\Zombie.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Program.cs" />

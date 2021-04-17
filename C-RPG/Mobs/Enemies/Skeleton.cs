@@ -14,12 +14,17 @@ namespace C_RPG.Mobs.Enemies
             Health = 50;
             Value = 2;
             level = 1;
-            damage = 15;
+            baseDamage = 5;
+            Armour = 5;
         }
 
         public new int Attack()
         {
-            return damage;
+  
+            Random random = new Random();
+            int AttackDamage = random.Next(baseDamage, 21);
+            Console.WriteLine("Skeleton DMG: " + AttackDamage);
+            return AttackDamage;
         }
 
         public override string ToString()

@@ -13,11 +13,24 @@ namespace C_RPG.Mobs.Enemies
         public int Health;
         public int Value;
         public int level;
-        public int damage;
+        public int baseDamage;
+        public int Armour;
+
+        /*
+         * Take Damage Method
+         */
+        public virtual void TakeDamage(int rawDamageValue)
+        {
+            int damageValue = rawDamageValue - Armour;
+            Health -= damageValue;
+        }
 
         public virtual int Attack()
         {
-            return 0;
+            Random random = new Random();
+            int AttackDamage = random.Next(baseDamage, 21);
+            Console.WriteLine("Skeleton DMG: " + AttackDamage);
+            return AttackDamage;
         }
 
         public override string ToString()
