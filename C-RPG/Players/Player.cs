@@ -16,7 +16,7 @@ namespace C_RPG.Players
         public virtual void TakeDamage(int rawDamageValue)
         {
 
-            int damageValue = rawDamageValue;
+            int damageValue = rawDamageValue;//test
             Health -= damageValue;
 
         }
