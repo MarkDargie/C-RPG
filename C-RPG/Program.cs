@@ -10,6 +10,9 @@ namespace C_RPG
     {
         static void Main(string[] args)
         {
+
+            Console.ReadKey();
+
         }
     }
 }
