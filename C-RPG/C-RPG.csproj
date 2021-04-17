@@ -49,6 +49,7 @@
     <Compile Include="Items\Item.cs" />
     <Compile Include="Mobs\Enemies\Enemy.cs" />
     <Compile Include="Mobs\Enemies\Skeleton.cs" />
+    <Compile Include="Mobs\Enemies\Slime.cs" />
     <Compile Include="Mobs\Enemies\Zombie.cs" />
     <Compile Include="Mobs\Entity.cs" />
     <Compile Include="Mobs\Player\Classes\Mage.cs" />
