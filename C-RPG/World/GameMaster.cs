@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 using C_RPG.Mobs.Player;
 using C_RPG.Mobs.Player.Classes;
 using C_RPG.Mobs.Enemies;
+using C_RPG.Items.Consumables;
 
 namespace C_RPG
 {
     class GameMaster
     {
 
-
+        /*
+         * Create Player Class
+         */
         public Player CreatePlayer()
         {
 
@@ -39,20 +42,23 @@ namespace C_RPG
 
         }
 
+        /*
+         * Game Over: Player Choice to Play Again or Exit on Death
+         */
         public void GameOver()
         {
+            Console.Clear();
             Console.WriteLine("You Have Died: Play Again(1). Exit(2)");
+      
         }
 
+        /*
+         * Show Player Stats from Player.ToString()
+         */
         public void ShowPlayer(Player player)
         {
             Console.WriteLine( '\n' + player.ToString());
         }
-
-        //public void AttackAction(Enemy target)
-        //{
-
-        //}
 
         /*
          * Testing Dungeon Instance Functionality
@@ -63,14 +69,17 @@ namespace C_RPG
 
             var random = new Random();
 
+            // Create Instance
             Instance instance = CreateDungeonInstance(player.level);
 
-            while (instance.mobs.Length > 0)
+            // Play instance while player is alive and there are mobs in the instance array
+            while (player.isAlive && instance.mobs.Length > 0)
             {
+                // Console Log Player and Mob Stats at start of each round
                 instance.ShowMobs();
-
                 ShowPlayer(player);
 
+                // Player Action
                 Console.WriteLine(" \n ACTION: (1) Attack. (2) Use Item. (3) Flee.");
                 string action = Console.ReadLine();
 
@@ -78,32 +87,59 @@ namespace C_RPG
                 {
                     instance.mobs[0].TakeDamage(player.StandardAttack());
                 }
+                else if (action == "2")
+                {
+                    PlayerInventoryAction(player);
+                }
                 else
                 {
                     Console.WriteLine("Action Invalid");
                 }
 
-                for (int i = 0; i < instance.mobs.Length; i++)
+                // Roll Mob Damage and Apply to Player Health
+                foreach(Enemy mob in instance.mobs)
                 {
-
-                    int roll = random.Next(1, 11);
-                    EnemyAttack(instance.mobs[i], player, roll);
-
+                    // **Maybe make this a function in future**
+                    int mobDamageRoll = mob.Attack(random.Next(1, 6));
+                    player.TakeDamage(mobDamageRoll);
                 }
-            }    
+
+            }
+
+            // End instance
+            // Reward XP + Items
+            // Player Choice to Rest or Continue ? **make this a method** 
+            if (!player.isAlive)
+            {
+                GameOver();
+            }
 
         }
 
+        // Show Player Inventory & Make Choice
+        public void PlayerInventoryAction(Player player)
+        {
+            player.ShowInventory();
+            Console.ReadLine();
+            Console.ResetColor();
+        }
 
-        public void EnemyAttack(Enemy enemy, Player player, int roll)
+        // Call once instance has been complete
+        public void InstanceComplete()
         {
 
-            int damageRoll = roll + enemy.baseDamage;
-
-            player.TakeDamage(damageRoll);
-
-            Console.WriteLine("ENEMY ACTION: " + damageRoll.ToString());
         }
+
+
+        //public void EnemyAttack(Enemy enemy, Player player, int roll)
+        //{
+
+        //    int damageRoll = roll + enemy.baseDamage;
+
+        //    player.TakeDamage(damageRoll);
+
+        //    Console.WriteLine("ENEMY ACTION: " + damageRoll.ToString());
+        //}
 
         public Instance CreateDungeonInstance(int playerLevel)
         {

@@ -13,13 +13,17 @@ namespace C_RPG.Items.Consumables.Food
             hpRestored = 10;
             name = "Chicken Wing";
             Usable = true;
+            effect = $"Restores {hpRestored} HP";
         }
-        
 
-
-        public override string ToString() //overwrite this for more detail.
+        public override string ToString()
         {
-            return "You consumed a "+name + ". You have recovered " + hpRestored.ToString() +" Health. Yum Yum.";
+            return "Item: " + name + " Effect: " + effect ;
         }
+
+        //public override string ToString() //overwrite this for more detail.
+        //{
+        //    return "You consumed a "+name + ". You have recovered " + hpRestored.ToString() +" Health. Yum Yum.";
+        //}
     }
 }

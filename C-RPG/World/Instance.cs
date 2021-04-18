@@ -35,7 +35,7 @@ namespace C_RPG
 
             for(int i = 0; i < mobSize; i++)
             {
-                enemies[i] = new Succubus();
+                enemies[i] = new Skeleton();
             }
             return enemies;
 
@@ -60,6 +60,11 @@ namespace C_RPG
 
                 Console.WriteLine(mobs[i].ToString() + "\n");
             }
+
+        }
+
+        public void CalculateInstanceRewards()
+        {
 
         }
         

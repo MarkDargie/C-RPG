@@ -16,5 +16,10 @@ namespace C_RPG.Mobs.Player.Classes
             Armour = 8;
             AbilityPointPool = 50;//energy
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " Energy: " + AbilityPointPool;
+        }
     }
 }

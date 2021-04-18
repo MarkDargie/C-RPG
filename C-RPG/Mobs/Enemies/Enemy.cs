@@ -32,14 +32,14 @@ namespace C_RPG.Mobs.Enemies
         public int Attack(int damageRoll)
         {
 
-            int attackDamage = RollDamage(baseDamage, 20);
-            Console.WriteLine(" Enemy Damage: " + attackDamage.ToString());
-            return attackDamage;
+            //int attackDamage = RollDamage(baseDamage, 20);
+            //Console.WriteLine(" Enemy Damage: " + attackDamage.ToString());
+            //return attackDamage;
 
-            //Random random = new Random();
-            //int attackdamage = random.Next(baseDamage, 21);
-            //Console.WriteLine("enemy dmg: " + attackdamage);
-            //return attackdamage;
+            int attackDamage = damageRoll + baseDamage;
+
+            Console.WriteLine("Enemy dmg: " + attackDamage);
+            return attackDamage;
         }
 
         public int RollDamage(int min, int max)

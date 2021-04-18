@@ -12,6 +12,7 @@ namespace C_RPG.Items.Consumables.Food
     {
         public int hpRestored { get; set; }
         public int abilityPoolPoints { get; set; }
+        public string effect { get; set; }
         public bool overtime { get; set; }
         public int overtimeTurns { get; set; }
         public StatusEffect ConsumableEffect { get; set; }

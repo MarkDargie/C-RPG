@@ -13,11 +13,11 @@ namespace C_RPG.Items.Consumables
         string name { get; set; }
         int hpRestored { get; set; }
         int abilityPoolPoints { get; set; }
+        string effect { get; set; }
         bool overtime { get; set; }
         bool Usable { get; set; }
         int overtimeTurns { get; set; }
         StatusEffect ConsumableEffect { get; set; }
-
         void Use(Entity entity);
 
     }

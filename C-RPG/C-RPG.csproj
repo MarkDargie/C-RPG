@@ -69,6 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Items\Consumables\Potions\" />
+    <Folder Include="Spells\Magic\" />
+    <Folder Include="Spells\Physical\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

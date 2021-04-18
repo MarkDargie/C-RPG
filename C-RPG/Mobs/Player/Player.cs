@@ -20,6 +20,7 @@ namespace C_RPG.Mobs.Player
         public List<StatusEffect> statusEffects { get; set; }
         public int AbilityPointPool { get; set; }
         public Item[] inventory { get; set; } //inventory space of 10 placeholder
+        public bool isAlive = true;
 
         public Player()
         {
@@ -37,11 +38,51 @@ namespace C_RPG.Mobs.Player
             return attackDamage;
         }
 
+        // Take Player Damage
         public virtual void TakeDamage(int rawDamageValue)
         {
 
             int damageValue = rawDamageValue;
             Health -= damageValue;
+
+            if(Health <= 0)
+            {
+                isAlive = false;
+            }
+
+        }
+
+        /*
+         * Show All items in player inventory
+         */
+        public void ShowInventory()
+        {
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(" ** Inventory ** ");
+
+            int itemIndex = 1;
+
+            foreach(Item item in this.inventory)
+            {
+
+                if(item == null)
+                {
+                    return;
+                } else
+                {
+                    Console.WriteLine($"({itemIndex.ToString()}) {item.ToString()}");
+                    itemIndex++;
+                }
+
+                
+            }
+
+            Console.ResetColor();
+        }
+
+        public void Rest()
+        {
 
         }
 
