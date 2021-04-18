@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using C_RPG.Items;
 
 namespace C_RPG.Mobs.Enemies
 {
@@ -15,6 +16,8 @@ namespace C_RPG.Mobs.Enemies
         public int level;
         public int baseDamage;
         public int Armour;
+        public Item[] possibleRewards { get; set; }
+        public Item[] guaranteedRewards { get; set; }
 
         /*
          * Take Damage Method
@@ -49,6 +52,12 @@ namespace C_RPG.Mobs.Enemies
 
             return random.Next(min, max);
 
+        }
+
+        public virtual Item[] generatePossibleRewards()
+        {
+            Item[] possibleDrops = new Item[5];
+            return possibleDrops;
         }
 
         public override string ToString()

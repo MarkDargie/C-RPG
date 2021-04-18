@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using C_RPG.Mobs.Enemies;
+using C_RPG.Items;
 
 namespace C_RPG
 {
@@ -63,9 +64,61 @@ namespace C_RPG
 
         }
 
-        public void CalculateInstanceRewards()
+        /*
+         * Calculate Instance XP reward from Mob Values
+         * @Param: Instance Mobs Array
+         * Rewards is equal to total of Mob Values + Number instace mobs
+         */
+        public int CalculateInstanceExperiance(Enemy[] mobs)
         {
+            int experianceReward = 0;
 
+            for(int i =0; i < mobs.Length; i++)
+            {
+                experianceReward += mobs[i].Value;
+            }
+
+            return experianceReward + mobs.Length;
+        }
+
+
+        /* Calculate Possible Instance Item Rewards from Mob Drops
+         * @Param: Instance Mobs Array
+         * Returns array of all possible rewards from each instance mob
+         */
+        public Item[] CalculatePossibleItemRewards(Enemy[] mobs)
+        {
+            List<Item> possibleItemRewards = new List<Item>();
+
+            for(int i = 0; i < mobs.Length; i++)
+            {
+                for(int x = 0; x < mobs[i].possibleRewards.Length; x++)
+                {
+                    possibleItemRewards.Add(mobs[i].possibleRewards[x]);
+                }
+            }
+
+            return possibleItemRewards.ToArray();
+        }
+
+
+        /* Calculate Guaranteed Instance Item Rewards from Mob Drops
+         * @Param: Instance Mobs Array
+         * Returns array of all rewards from each instance mob
+         */
+        public Item[] CalculateGuaranteedItemRewards(Enemy[] mobs)
+        {
+            List<Item> guaranteedItemRewards = new List<Item>();
+
+            for(int i = 0; i < mobs.Length; i++)
+            {
+                for(int x = 0; x <  mobs[i].guaranteedRewards.Length; x++)
+                {
+                    guaranteedItemRewards.Add(mobs[i].guaranteedRewards[x]);
+                }
+            }
+
+            return guaranteedItemRewards.ToArray();
         }
         
     }

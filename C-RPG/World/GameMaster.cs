@@ -72,6 +72,8 @@ namespace C_RPG
             // Create Instance
             Instance instance = CreateDungeonInstance(player.level);
 
+            instance.CalculatePossibleItemRewards(instance.mobs);
+
             // Play instance while player is alive and there are mobs in the instance array
             while (player.isAlive && instance.mobs.Length > 0)
             {
