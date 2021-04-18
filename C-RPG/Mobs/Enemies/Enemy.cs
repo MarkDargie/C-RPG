@@ -41,7 +41,7 @@ namespace C_RPG.Mobs.Enemies
 
             int attackDamage = damageRoll + baseDamage;
 
-            Console.WriteLine("Enemy dmg: " + attackDamage);
+            Console.WriteLine(" Enemy Atacked for : " + attackDamage);
             return attackDamage;
         }
 
@@ -58,6 +58,12 @@ namespace C_RPG.Mobs.Enemies
         {
             Item[] possibleDrops = new Item[5];
             return possibleDrops;
+        }
+
+        public virtual Item[] generateGuaranteedRewards()
+        {
+            Item[] guaranteedDrops = new Item[5];
+            return guaranteedDrops;
         }
 
         public override string ToString()

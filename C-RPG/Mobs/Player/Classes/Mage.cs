@@ -17,7 +17,7 @@ namespace C_RPG.Mobs.Player.Classes
             Health = 100;
             Armour = 5;
             AbilityPointPool = 50;//mana
-            inventory = new Item[10];
+            //inventory = new Item[10];
             
         }
 

@@ -68,7 +68,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Art\" />
     <Folder Include="Items\Consumables\Potions\" />
+    <Folder Include="Mobs\Enemies\Bosses\" />
     <Folder Include="Spells\Magic\" />
     <Folder Include="Spells\Physical\" />
   </ItemGroup>

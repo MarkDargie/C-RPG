@@ -13,7 +13,7 @@ namespace C_RPG
         public string name;
         public int level;
         public int numberofMobs;
-        public Enemy[] mobs;
+        public List<Enemy> mobs;
 
         // Keep track of how many instances have been played
         public static int InstanceCount;
@@ -22,7 +22,7 @@ namespace C_RPG
         {
             name = _name;
             level = _level;
-            numberofMobs = level + 1;
+            numberofMobs = 1;
             mobs = GetMobs(numberofMobs);
             InstanceCount++;
         }
@@ -30,13 +30,13 @@ namespace C_RPG
         /*
          * Create Array of Mobs for instance
          */
-        public Enemy[] GetMobs(int mobSize)
+        public List<Enemy> GetMobs(int mobSize)
         {
-            Enemy[] enemies = new Enemy[mobSize];
+            List<Enemy> enemies = new List<Enemy>();
 
             for(int i = 0; i < mobSize; i++)
             {
-                enemies[i] = new Skeleton();
+                enemies.Add(new Skeleton());
             }
             return enemies;
 
@@ -50,17 +50,26 @@ namespace C_RPG
 
             int reward = 0;
 
-            for(int i = 0; i < mobs.Length; i++)
+            if(mobs.Count <= 0)
             {
-
-                if (mobs[i].Health <= 0)
-                {
-                    reward += mobs[i].Value;
-                    mobs = mobs.Where(mob => mob.Health > 0).ToArray();
-                }
-
-                Console.WriteLine(mobs[i].ToString() + "\n");
+                Console.WriteLine("All Mobs Cleared");
             }
+            else
+            {
+                for (int i = 0; i < mobs.Count; i++)
+                {
+
+                    if (mobs[i].Health <= 0)
+                    {
+                        reward += mobs[i].Value;
+                        mobs.Remove(mobs[i]);   
+                    }
+
+                    Console.WriteLine(mobs[i].ToString() + "\n");
+                }
+            }
+
+
 
         }
 
@@ -69,16 +78,16 @@ namespace C_RPG
          * @Param: Instance Mobs Array
          * Rewards is equal to total of Mob Values + Number instace mobs
          */
-        public int CalculateInstanceExperiance(Enemy[] mobs)
+        public int CalculateInstanceExperiance(List<Enemy> mobs)
         {
             int experianceReward = 0;
 
-            for(int i =0; i < mobs.Length; i++)
+            for(int i =0; i < mobs.Count; i++)
             {
                 experianceReward += mobs[i].Value;
             }
 
-            return experianceReward + mobs.Length;
+            return experianceReward + mobs.Count;
         }
 
 
@@ -86,11 +95,11 @@ namespace C_RPG
          * @Param: Instance Mobs Array
          * Returns array of all possible rewards from each instance mob
          */
-        public Item[] CalculatePossibleItemRewards(Enemy[] mobs)
+        public Item[] CalculatePossibleItemRewards(List<Enemy> mobs)
         {
             List<Item> possibleItemRewards = new List<Item>();
 
-            for(int i = 0; i < mobs.Length; i++)
+            for(int i = 0; i < mobs.Count; i++)
             {
                 for(int x = 0; x < mobs[i].possibleRewards.Length; x++)
                 {
@@ -106,11 +115,11 @@ namespace C_RPG
          * @Param: Instance Mobs Array
          * Returns array of all rewards from each instance mob
          */
-        public Item[] CalculateGuaranteedItemRewards(Enemy[] mobs)
+        public Item[] CalculateGuaranteedItemRewards(List<Enemy> mobs)
         {
             List<Item> guaranteedItemRewards = new List<Item>();
 
-            for(int i = 0; i < mobs.Length; i++)
+            for(int i = 0; i < mobs.Count; i++)
             {
                 for(int x = 0; x <  mobs[i].guaranteedRewards.Length; x++)
                 {

@@ -7,6 +7,7 @@ using C_RPG.Mobs.Player;
 using C_RPG.Mobs.Player.Classes;
 using C_RPG.Mobs.Enemies;
 using C_RPG.Items.Consumables;
+using C_RPG.Items;
 
 namespace C_RPG
 {
@@ -70,15 +71,22 @@ namespace C_RPG
             var random = new Random();
 
             // Create Instance
+            // Move this logic into separate function
             Instance instance = CreateDungeonInstance(player.level);
+            Item[] possibleRewards = instance.CalculatePossibleItemRewards(instance.mobs);
+            Item[] guarenteedRewards = instance.CalculateGuaranteedItemRewards(instance.mobs);
 
-            instance.CalculatePossibleItemRewards(instance.mobs);
+            bool ActiveInstance = true;
 
             // Play instance while player is alive and there are mobs in the instance array
-            while (player.isAlive && instance.mobs.Length > 0)
+            while (player.isAlive && ActiveInstance == true)
             {
                 // Console Log Player and Mob Stats at start of each round
-                instance.ShowMobs();
+                if(instance.mobs.Count > 0)
+                {
+                    instance.ShowMobs();
+                }
+                //instance.ShowMobs();
                 ShowPlayer(player);
 
                 // Player Action
@@ -98,8 +106,18 @@ namespace C_RPG
                     Console.WriteLine("Action Invalid");
                 }
 
+                if (instance.mobs.Count <= 0)
+                {
+
+                    PlayerRewards(possibleRewards, guarenteedRewards, player);
+
+                    InstanceComplete();
+
+                    ActiveInstance = false;
+                }
+
                 // Roll Mob Damage and Apply to Player Health
-                foreach(Enemy mob in instance.mobs)
+                foreach (Enemy mob in instance.mobs)
                 {
                     // **Maybe make this a function in future**
                     int mobDamageRoll = mob.Attack(random.Next(1, 6));
@@ -116,6 +134,17 @@ namespace C_RPG
                 GameOver();
             }
 
+
+        }
+
+        public void PlayerInstanceAction(Player player)
+        {
+            // Choose Action
+        }
+
+        public void PlayerAttackAction(Player player)
+        {
+            // Attack Logic
         }
 
         // Show Player Inventory & Make Choice
@@ -126,10 +155,26 @@ namespace C_RPG
             Console.ResetColor();
         }
 
+
+        public void PlayerRewards(Item[] possible, Item[] guarenteeed, Player player)
+        {
+            var random = new Random();
+
+            int lootRoll = random.Next(1, possible.Length);
+
+            Console.WriteLine("Reward: " + possible[lootRoll]);
+            player.inventory.Add(possible[lootRoll]);
+
+
+
+
+        }
+
         // Call once instance has been complete
         public void InstanceComplete()
         {
-
+            Console.WriteLine("DUNGEON COMPLETE !!");
+           
         }
 
 

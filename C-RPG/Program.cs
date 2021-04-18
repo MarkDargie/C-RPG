@@ -22,7 +22,7 @@ namespace C_RPG
             Game.intro();
 
             Player player = Game.CreatePlayer();
-            player.inventory[0] = new ChickenWing();
+            player.inventory.Add(new ChickenWing());
 
             Game.ShowPlayer(player);
 

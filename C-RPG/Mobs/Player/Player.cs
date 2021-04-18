@@ -19,13 +19,13 @@ namespace C_RPG.Mobs.Player
         public int level = 1;
         public List<StatusEffect> statusEffects { get; set; }
         public int AbilityPointPool { get; set; }
-        public Item[] inventory { get; set; } //inventory space of 10 placeholder
+        public List<Item> inventory { get; set; } //inventory space of 10 placeholder
         public bool isAlive = true;
 
         public Player()
         {
             statusEffects = new List<StatusEffect>();
-            inventory = new Item[10];
+            inventory = new List<Item>();
         }
 
         /*

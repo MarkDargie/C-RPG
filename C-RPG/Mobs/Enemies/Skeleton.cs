@@ -20,6 +20,7 @@ namespace C_RPG.Mobs.Enemies
             Armour = 5;
             AbilityPointPool = 50;
             possibleRewards = generatePossibleRewards();
+            guaranteedRewards = generateGuaranteedRewards();
         }
 
         public override Item[] generatePossibleRewards()
@@ -33,6 +34,16 @@ namespace C_RPG.Mobs.Enemies
 
             return possibleDrops;
 
+        }
+
+        public override Item[] generateGuaranteedRewards()
+        {
+            Item[] guaranteedDrops = new Item[1];
+            for(int i =0; i < guaranteedDrops.Length; i++)
+            {
+                guaranteedDrops[i] = new ChickenWing();
+            }
+            return guaranteedDrops;
         }
 
 
